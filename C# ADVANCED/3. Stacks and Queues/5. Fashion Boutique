@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class P05_FashionBoutique
+{
+    static void Main(string[] args)
+    {
+        int[] clothesInBox = Console.ReadLine()
+                               .Split()
+                               .Select(int.Parse)
+                               .ToArray();
+        int capacityOfRack = int.Parse(Console.ReadLine());
+        var myStack = new Stack<int>(clothesInBox);
+        int sum = 0;
+        int racks = 1;
+
+        while (myStack.Count != 0)
+        {
+            int clothValue = myStack.Pop();
+            sum += clothValue;
+
+            if (sum > capacityOfRack)
+            {
+                sum = clothValue;
+                racks++;
+            }
+        }
+        Console.WriteLine(racks);
+    }
+}
