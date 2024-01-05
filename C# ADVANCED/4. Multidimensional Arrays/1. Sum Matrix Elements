@@ -1,0 +1,37 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Read matrix sizes
+        string[] matrixSize = Console.ReadLine().Split(", ");
+        int rows = int.Parse(matrixSize[0]);
+        int columns = int.Parse(matrixSize[1]);
+
+        // Initialize the matrix
+        int[,] matrix = new int[rows, columns];
+
+        // Read matrix elements
+        for (int i = 0; i < rows; i++)
+        {
+            string[] elements = Console.ReadLine().Split(", ");
+            for (int j = 0; j < columns; j++)
+            {
+                matrix[i, j] = int.Parse(elements[j]);
+            }
+        }
+
+        // Calculate and print count of rows, count of columns, and sum of matrix elements
+        int sum = 0;
+
+        foreach (int element in matrix)
+        {
+            sum += element;
+        }
+
+        Console.WriteLine(rows);
+        Console.WriteLine(columns);
+        Console.WriteLine(sum);
+    }
+}
