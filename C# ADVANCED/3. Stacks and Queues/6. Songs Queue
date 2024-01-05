@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+
+namespace _6._Songs_Queue
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] songs = Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries);
+            var myQueue = new Queue<string>();
+
+            foreach (string item in songs)
+            {
+                if (!myQueue.Contains(item))
+                {
+                    myQueue.Enqueue(item);
+                }
+            }
+
+            while (myQueue.Count != 0)
+            {
+                string data = Console.ReadLine();
+                string command = data.Substring(0, 4);
+
+                switch (command)
+                {
+                    case "Play":
+                        myQueue.Dequeue();
+                        break;
+
+                    case "Add ":
+                        string song = data.Substring(4, data.Length - 4);
+                        if (!myQueue.Contains(song))
+                        {
+                            myQueue.Enqueue(song);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{song} is already contained!");
+                        }
+                        break;
+
+                    case "Show":
+                        Console.WriteLine(String.Join(", ", myQueue));
+                        break;
+                }
+            }
+
+            Console.WriteLine("No more songs!");
+        }
+    }
+}
