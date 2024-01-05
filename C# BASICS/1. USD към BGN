@@ -1,0 +1,18 @@
+using System;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double depositSum = double.Parse(Console.ReadLine());
+            int period = int.Parse(Console.ReadLine());
+            double interest = double.Parse(Console.ReadLine()) * 0.01;
+
+            double sum = depositSum + period * ((depositSum * interest) / 12);
+
+            Console.WriteLine(sum);
+        }
+    }
+}
