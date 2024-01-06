@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _7._Truck_Tour
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int N = int.Parse(Console.ReadLine());
+            Queue<int[]> myQueue = new Queue<int[]>();
+
+            for (int i = 0; i < N; i++)
+            {
+                int[] parameters = Console.ReadLine().Split().Select(int.Parse).ToArray();
+                myQueue.Enqueue(parameters);
+            }
+
+            int indexInteger = 0;
+            while (true)
+            {
+                int fuel = 0;
+                foreach (int[] petrolPump in myQueue)
+                {
+                    fuel += petrolPump[0] - petrolPump[1];
+                    if (fuel < 0)
+                    {
+                        indexInteger++;
+                        int[] currentPump = myQueue.Dequeue();
+                        myQueue.Enqueue(currentPump);
+                        break;
+                    }
+                }
+
+                if (fuel >= 0)
+                {
+                    break;
+                }
+            }
+
+            Console.WriteLine(indexInteger);
+        }
+    }
+}
