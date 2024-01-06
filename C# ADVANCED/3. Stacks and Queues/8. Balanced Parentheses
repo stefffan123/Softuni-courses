@@ -7,7 +7,7 @@ namespace _8._Balanced_Parentheses
     {
         static void Main(string[] args)
         {
-            Stack<char> parantheses = new Stack<char>();
+            var parentheses = new Stack<char>();
             string inputSequence = Console.ReadLine();
             bool isBalanced = true;
 
@@ -15,34 +15,31 @@ namespace _8._Balanced_Parentheses
             {
                 if (inputSequence[i] == '{' || inputSequence[i] == '[' || inputSequence[i] == '(')
                 {
-                    parantheses.Push(inputSequence[i]);
+                    parentheses.Push(inputSequence[i]);
                     continue;
                 }
-
-                if (parantheses.Count == 0)
+                if (parentheses.Count == 0)
                 {
                     isBalanced = false;
                     break;
                 }
-
-                if (parantheses.Peek() == '(' && inputSequence[i] == ')')
+                if (parentheses.Peek() == '(' && inputSequence[i] == ')')
                 {
-                    parantheses.Pop();
+                    parentheses.Pop();
                     continue;
                 }
-                if (parantheses.Peek() == '[' && inputSequence[i] == ']')
+                if (parentheses.Peek() == '[' && inputSequence[i] == ']')
                 {
-                    parantheses.Pop();
+                    parentheses.Pop();
                     continue;
                 }
-                if (parantheses.Peek() == '{' && inputSequence[i] == '}')
+                if (parentheses.Peek() == '{' && inputSequence[i] == '}')
                 {
-                    parantheses.Pop();
+                    parentheses.Pop();
                     continue;
                 }
             }
-
-            Console.WriteLine(parantheses.Count == 0 && isBalanced == true ? "YES" : "NO");
+            Console.WriteLine(parentheses.Count == 0 && isBalanced == true ? "YES" : "NO");
         }
     }
 }
