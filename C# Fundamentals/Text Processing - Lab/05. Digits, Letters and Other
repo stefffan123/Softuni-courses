@@ -1,0 +1,29 @@
+using System;
+
+namespace _5.Digits__Letters_and_Others
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string input = Console.ReadLine();
+                foreach (char c in input)
+                {
+                    if (Char.IsDigit(c))
+                        Console.Write(c);
+                }
+                Console.WriteLine();
+            foreach (char c in input)
+            {
+                if (Char.IsLetter(c))
+                    Console.Write(c);
+            }
+            Console.WriteLine();
+            foreach (char c in input)
+            {
+                if (!Char.IsLetter(c) && !Char.IsDigit(c))
+                    Console.Write(c);
+            }
+        }
+    }
+}
