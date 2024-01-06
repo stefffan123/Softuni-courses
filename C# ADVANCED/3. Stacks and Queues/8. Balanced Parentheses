@@ -1,45 +1,39 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace _8._Balanced_Parentheses
+namespace _08._Balanced_Parenthesis
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            var parentheses = new Stack<char>();
-            string inputSequence = Console.ReadLine();
-            bool isBalanced = true;
-
-            for (int i = 0; i < inputSequence.Length; i++)
+            string input = Console.ReadLine();
+            var parenthesStack = new Stack<char>();
+            foreach (var item in input)
             {
-                if (inputSequence[i] == '{' || inputSequence[i] == '[' || inputSequence[i] == '(')
+                if (parenthesStack.Any())
                 {
-                    parentheses.Push(inputSequence[i]);
-                    continue;
+                    char check = parenthesStack.Peek();
+                    if (check == '{' && item == '}')
+                    {
+                        parenthesStack.Pop();
+                        continue;
+                    }
+                    else if (check == '[' && item == ']')
+                    {
+                        parenthesStack.Pop();
+                        continue;
+                    }
+                    else if (check == '(' && item == ')')
+                    {
+                        parenthesStack.Pop();
+                        continue;
+                    }
                 }
-                if (parentheses.Count == 0)
-                {
-                    isBalanced = false;
-                    break;
-                }
-                if (parentheses.Peek() == '(' && inputSequence[i] == ')')
-                {
-                    parentheses.Pop();
-                    continue;
-                }
-                if (parentheses.Peek() == '[' && inputSequence[i] == ']')
-                {
-                    parentheses.Pop();
-                    continue;
-                }
-                if (parentheses.Peek() == '{' && inputSequence[i] == '}')
-                {
-                    parentheses.Pop();
-                    continue;
-                }
+                parenthesStack.Push(item);
             }
-            Console.WriteLine(parentheses.Count == 0 && isBalanced == true ? "YES" : "NO");
+            Console.WriteLine(!parenthesStack.Any() ? "YES" : "NO");
         }
     }
 }
