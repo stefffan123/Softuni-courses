@@ -1,0 +1,32 @@
+using System;
+using System.Linq;
+
+namespace _3._Primary_Diagonal
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int N = int.Parse(Console.ReadLine());
+            int[,] squareMatrix = new int[N,N];
+
+            for (int i = 0; i < N; i++)
+            {
+                int[] elements = Console.ReadLine()
+                    .Split()
+                    .Select(int.Parse)
+                    .ToArray();
+                for (int j = 0; j < N; j++)
+                {
+                    squareMatrix[i,j] = elements[j];
+                }
+            }
+            int sum = 0;
+            for (int a = 0; a < N; a++)
+            {
+                sum += squareMatrix[a,a]; 
+            }
+            Console.WriteLine(sum);
+        }
+    }
+}
