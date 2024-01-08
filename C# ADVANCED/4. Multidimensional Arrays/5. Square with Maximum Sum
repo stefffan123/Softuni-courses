@@ -1,0 +1,52 @@
+using System;
+
+namespace _5._Square_with_Maximum_Sum
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] matrixSize = Console.ReadLine().Split(", ");
+            int rows = int.Parse(matrixSize[0]);
+            int columns = int.Parse(matrixSize[1]);
+
+            int[,] matrix = new int[rows, columns];
+
+            for (int i = 0; i < rows; i++)
+            {
+                string[] elements = Console.ReadLine().Split(", ");
+                for (int j = 0; j < columns; j++)
+                {
+                    matrix[i, j] = int.Parse(elements[j]);
+                }
+            }
+
+            int maxSum = int.MinValue;
+            int[,] bestMatrix = new int[2, 2];
+            for (int row = 0; row < rows - 1; row++)
+            {
+                for (int i = 0; i < columns - 1; i++)
+                {
+                    int sum = matrix[row, i] +
+                              matrix[row, i + 1] +
+                              matrix[row + 1, i] +
+                              matrix[row + 1, i + 1];
+
+                    if (sum > maxSum)
+                    {
+                        bestMatrix[0, 0] = matrix[row, i];
+                        bestMatrix[0, 1] = matrix[row, i + 1];
+                        bestMatrix[1, 0] = matrix[row + 1, i];
+                        bestMatrix[1, 1] = matrix[row + 1, i + 1];
+
+                        maxSum = sum;
+                    }
+                }
+            }
+
+            Console.WriteLine($"{bestMatrix[0, 0]} {bestMatrix[0, 1]}");
+            Console.WriteLine($"{bestMatrix[1, 0]} {bestMatrix[1, 1]}");
+            Console.WriteLine(maxSum);
+        }
+    }
+}
