@@ -1,36 +1,41 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 
-namespace Cities_by_Continent_and_Country
+namespace _6.Courses
 {
     class Program
     {
-        static void Main(string[] args)
+
+        public static void Main()
         {
             int number = int.Parse(Console.ReadLine());
-            var myDict = new SortedDictionary<string, Dictionary<string, string>>();
+            var register = new Dictionary<string, Dictionary<string, List<string>>>();
             for (int i = 0; i < number; i++)
-            {      
+            {
                 string[] input = Console.ReadLine().Split();
                 string continent = input[0];
                 string country = input[1];
-                string town = input[2];
-                if (!myDict.ContainsKey(continent))
+                string city = input[2];
+                if (!register.ContainsKey(continent))
                 {
-                    myDict[continent] = new Dictionary<string, string>();
+                    register.Add(continent, new Dictionary<string, List<string>>());
                 }
-                if (!myDict[continent].ContainsKey(country))
+
+                if (!register[continent].ContainsKey(country))
                 {
-                    myDict[continent].Add(country, town);
+                    register[continent].Add(country, new List<string>());
                 }
+                register[continent][country].Add(city);
             }
-            foreach (var item in myDict)
+
+            foreach (var currentContinent in register)
             {
-                Console.WriteLine($"{item.Key}:");
-                foreach (var item2 in item.Value)
+                Console.WriteLine($"{currentContinent.Key}:");
+
+                foreach (var currentCountry in currentContinent.Value)
                 {
-                    Console.WriteLine($"{item2.Key} -> {(item2.Value)}");
+                    Console.WriteLine($"  {currentCountry.Key} -> {string.Join(", ", currentCountry.Value)}");
                 }
             }
         }
