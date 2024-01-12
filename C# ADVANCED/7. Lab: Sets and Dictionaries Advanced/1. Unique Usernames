@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+
+namespace _1.Unique_Usernames_2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int num = int.Parse(Console.ReadLine());
+            var mySet = new HashSet<string>();
+
+            for (int i = 0; i < num; i++)
+            {
+                mySet.Add(Console.ReadLine());
+            }
+            foreach (var item in mySet)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}
