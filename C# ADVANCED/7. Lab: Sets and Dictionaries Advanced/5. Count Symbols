@@ -22,9 +22,9 @@ namespace _5._Count_Symbols
                 }
             }
 
-            foreach (var symbol in symbols)
+            foreach (var item in symbols)
             {
-                Console.WriteLine(String.Join(Environment.NewLine, $"{symbol.Key}: {symbol.Value} time/s"));
+                Console.WriteLine($"{item.Key}: {item.Value} time/s");
             }
         }
     }
