@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace WordCount
 {
@@ -18,43 +19,43 @@ namespace WordCount
 
         public static void CalculateWordCounts(string words_A, string text_B, string output_C)
         {
-            var dictionary = new SortedDictionary<string, int>();
-            string inputWords = File.ReadAllText(words_A);
-            string[] words = inputWords.Split();
-            using var writer = new StreamWriter(output_C);
-
-            using (var reader = new StreamReader(text_B))
+            using (var reader = new StreamReader(words_A))
             {
-                string currentSentence = reader.ReadLine();
-
-                while (currentSentence != null)
+                var wordsCount = new Dictionary<string, int>();
+                string[] words = reader.ReadToEnd().Split();
+                
+                foreach (string word in words)
                 {
-                    foreach (var word in words)
+                    if (!wordsCount.ContainsKey(word))
                     {
-                        if (currentSentence.ToLower().Contains(word))
-                        {
-
-                            if (!dictionary.ContainsKey(word))
-                            {
-                                dictionary.Add(word, 0);
-                                dictionary[word]++;
-                            }
-                            else
-                            {
-                                dictionary[word]++;
-                            }
-                        }
+                        wordsCount[word] = 0;
                     }
-
-                    currentSentence = reader.ReadLine();
                 }
 
-                foreach (var word in dictionary.OrderByDescending(x => x.Value))
+                using (var reader2 = new StreamReader(text_B))
                 {
-                    writer.WriteLine($"{word.Key} - {word.Value}");
+                    string[] textWords = reader2.ReadToEnd()
+                                                .Split(new string[] { " ", "\t", Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                                                .Select(word => Regex.Match(word, @"[A-Za-z']*[A-Za-z]{1}").Value.ToLower())
+                                                .ToArray();
+
+                    foreach (string word in textWords)
+                    {
+                        if (wordsCount.ContainsKey(word))
+                        {
+                            wordsCount[word]++;
+                        }
+                    }
+                }
+
+                using (var writer = new StreamWriter(output_C))
+                {
+                    foreach (var word in wordsCount.OrderByDescending(w => w.Value))
+                    {
+                        writer.WriteLine($"{word.Key} - {word.Value}");
+                    }
                 }
             }
         }
     }
 }
-
