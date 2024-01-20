@@ -1,0 +1,14 @@
+namespace _1.Action_Print
+{
+    using System;
+
+    public class ActionPrint
+    {
+        public static void Main()
+        {
+            string[] input = Console.ReadLine().Split();
+            Action<string[]> lambdaAction = n => Console.WriteLine(string.Join(Environment.NewLine, n));
+            lambdaAction(input);
+        }
+    }
+}
