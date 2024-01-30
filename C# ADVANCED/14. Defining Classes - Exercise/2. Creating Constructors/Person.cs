@@ -1,4 +1,4 @@
-﻿namespace DefiningClasses
+namespace DefiningClasses
 {
     public class Person
     {
@@ -9,17 +9,20 @@
         //-------------- Constructors --------------
         public Person()
         {
+            // Default constructor with default values
             this.Name = "No name";
             this.Age = 1;
         }
 
         public Person(int age) : this()
         {
+            // Constructor with age parameter, utilizing the default constructor
             this.Age = age;
         }
 
         public Person(string name, int age)
         {
+            // Constructor with name and age parameters
             this.Name = name;
             this.Age = age;
         }
