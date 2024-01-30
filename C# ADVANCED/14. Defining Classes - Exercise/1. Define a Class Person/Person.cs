@@ -1,13 +1,13 @@
-﻿namespace DefiningClasses
+// This is the definition of the Person class
+namespace DefiningClasses
 {
     class Person
     {
-        //------Private Fields ----------
+        // Private fields to store name and age
         private string name;
         private int age;
 
-
-        //------ Properties -------------
+        // Properties to access and modify the private fields
         public string Name
         {
             get { return name; }
