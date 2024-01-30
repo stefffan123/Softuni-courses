@@ -1,9 +1,10 @@
-﻿namespace DefiningClasses
+namespace DefiningClasses
 {
     public class StartUp
     {
         static void Main(string[] args)
         {
+            // Creating instances of the Person class
             Person person1 = new Person();
             person1.Name = "Pesho";
             person1.Age = 20;
