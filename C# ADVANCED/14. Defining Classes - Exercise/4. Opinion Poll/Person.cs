@@ -1,7 +1,13 @@
-﻿namespace P04_OpinionPoll
+using System.Xml.Linq;
+
+namespace P04_OpinionPoll
 {
+
+    //The Person class looks well-structured.
+    //It has a default constructor, a constructor with an age parameter, and a parameterized constructor for initializing both name and age.
     public class Person
     {
+
         //----------------- Fields -----------------
         private string name;
         private int age;
@@ -24,7 +30,7 @@
             this.Age = age;
         }
 
-        //--------------- Properties ---------------
+        // Properties:  The properties Name and Age use a combination of private fields and public accessors.
         public string Name
         {
             get { return this.name; }
@@ -37,7 +43,7 @@
             set { this.age = value; }
         }
 
-        //---------------- Methods -----------------
+        // Methods: The ToString method is overridden to provide a custom string representation for a Person object.
         public override string ToString()
         {
             return $"{this.Name} - {this.Age}";
