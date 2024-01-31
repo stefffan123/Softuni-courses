@@ -1,14 +1,15 @@
-﻿namespace P05_DateModifier
+namespace P05_DateModifier
 {
     using System;
 
     public class DateModifier
     {
         //-------------- Constructors --------------
-        public DateModifier(string date1, string date2)
+        //The constructor of the DateModifier class takes two parameters named dateString1 and dateString2,
+        public DateModifier(string dateString1, string dateString2)
         {
-            this.Date1 = DateTime.ParseExact(date1, "yyyy MM dd", System.Globalization.CultureInfo.InvariantCulture);
-            this.Date2 = DateTime.ParseExact(date2, "yyyy MM dd", System.Globalization.CultureInfo.InvariantCulture);
+            this.Date1 = DateTime.ParseExact(dateString1, "yyyy MM dd", System.Globalization.CultureInfo.InvariantCulture);
+            this.Date2 = DateTime.ParseExact(dateString2, "yyyy MM dd", System.Globalization.CultureInfo.InvariantCulture);
         }
 
         //--------------- Properties ---------------
