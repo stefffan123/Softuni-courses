@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +13,7 @@ namespace DefiningClasses
 
         //--------------- Properties ---------------
         public List<Person> People { get; private set; }
+
 
         //---------------- Methods -----------------
         public void AddMember(Person member)
