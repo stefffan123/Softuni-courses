@@ -1,4 +1,4 @@
-﻿namespace DefiningClasses
+namespace DefiningClasses
 {
     public class Person
     {
@@ -24,7 +24,7 @@
             this.Age = age;
         }
 
-        //--------------- Properties ---------------
+        //--------------- Properties ----------
         public string Name
         {
             get { return this.name; }
