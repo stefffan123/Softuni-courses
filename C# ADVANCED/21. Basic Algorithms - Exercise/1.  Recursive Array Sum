@@ -1,0 +1,45 @@
+namespace P01_ArraySum
+{
+    using System;
+    using System.Linq;
+
+    class P01_ArraySum
+    {
+        static void Main(string[] args)
+        {
+            // Read integers from the console input, split by space, parse to integers, and convert to array
+            int[] arr = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToArray();
+            // Call the Sum method to calculate the sum of the array elements, starting from index 0
+            Console.WriteLine(Sum(arr, 0));
+        }
+
+        // Recursive method to calculate the sum of array elements
+        private static int Sum(int[] myArr, int index)
+        {
+            // Base case: if the index is less than the array length
+            if (index < myArr.Length)
+            {
+                // Add the current element at index to the sum of the rest of the array elements
+                return myArr[index] + Sum(myArr, index + 1);
+            }
+
+            else 
+            {
+                // Base case: if the index is equal to or exceeds the array length, return 0
+                return 0;
+            }
+        }
+    }
+}
+// This C# program takes an array of integers as input from the user,
+// calculates the sum of all elements in the array using recursion, and then prints the result.
+// Here's how the program works:
+ //   The program reads a line of input from the console, containing space-separated integers.
+//    It splits the input string into individual integer strings, parses them into integers, and stores them in an array arr.
+//    It then calls the Sum method with the array arr and starting index 0.
+//    The Sum method calculates the sum of array elements recursively. It starts with the base case where the index is less than the array length. In each recursive call, it adds the current element at the given index to the sum of the rest of the array elements (calculated by recursively calling Sum with the next index).
+ //   When the index exceeds or equals the array length, it returns 0, terminating the recursion.
+ //   Finally, the sum of the array elements is printed to the console.
