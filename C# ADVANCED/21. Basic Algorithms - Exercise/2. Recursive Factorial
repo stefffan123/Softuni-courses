@@ -1,0 +1,29 @@
+using System;
+
+namespace _2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Read input from the user
+            int number = int.Parse(Console.ReadLine());
+
+            // Call the Factorial method and print the result
+            Console.WriteLine(Factorial(number));
+        }
+
+        // Recursive method to calculate factorial
+        static long Factorial(int n)
+        {
+            // Base case: if n is 0, factorial is 1
+            if (n == 0)
+            {
+                return 1;
+            }
+
+            // Recursive case: compute factorial recursively
+            return (n * Factorial(n - 1));
+        }
+    }
+}
