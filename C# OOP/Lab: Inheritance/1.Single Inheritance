@@ -1,0 +1,35 @@
+using System;
+
+namespace Farm
+{ 
+    public class Animal
+    {
+        public void Eat()
+        {
+            Console.WriteLine("eating...");
+        }
+    }
+    public class Dog: Animal
+    {
+        public void Bark()
+        {
+            Console.WriteLine("barking...");
+        }
+    }
+
+    public class StartUp
+    {
+        static void Main()
+        {
+            Dog dog = new Dog();
+            dog.Bark();
+            dog.Bark();
+        }
+    }
+}
+//  Here 's how you can implement the single inheritance scenario with C#:
+
+//  We have a namespace Farm that contains classes Animal, Dog, and StartUp.
+//  Animal class has a single public method Eat() which prints "eating...".
+//  Dog class inherits from Animal using the : operator. It has a single public method Bark() which prints "barking...".
+//  StartUp class contains the Main() method which creates an instance of Dog and calls its Bark() method twice.
