@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+
+namespace CustomRandomList
+{
+    public class RandomList : List<string>
+    {
+        //------------------ Fields ----------------------
+        private Random rnd;
+
+        //---------------- Constructors ------------------
+        public RandomList()
+        {
+            this.rnd = new Random();
+        }
+
+        //------------------ Methods ---------------------
+        public string RandomString()
+        {
+            int index = rnd.Next(0, this.Count);
+            string str = this[index];
+            this.RemoveAt(index);
+            return str;
+        }
+    }
+
+
+    public class StartUp
+    {
+        
+        static void Main(string[] args)
+        {
+            RandomList randomList = new RandomList();
+            randomList.Add("abc");
+            randomList.Add("xyz");
+            randomList.Add("qwerty");
+
+            string randomString = randomList.RandomString();
+            Console.WriteLine(randomString);
+        }
+    }
+}
+/* Your code appears to be a C# program that defines a custom RandomList class, which inherits from List<string>,
+and includes a method RandomString() to retrieve a random element from the list and remove it.
+The Main method in the StartUp class demonstrates the usage of this RandomList class by adding some strings to it and then retrieving a random string.
+
+Here's a breakdown of your code:
+
+The RandomList class:
+
+Inherits from List<string>.
+Contains a private field rnd of type Random for generating random numbers.
+Defines a constructor to initialize the rnd field with a new instance of the Random class.
+Provides a RandomString() method that:
+Generates a random index within the range of valid indices of the list.
+Retrieves the string at the random index.
+Removes the string at that index from the list.
+Returns the retrieved string.
+
+The StartUp class:
+Contains the Main method, which serves as the entry point of the program.
+Inside the Main method, it creates an instance of RandomList.
+Adds some strings ("abc", "xyz", "qwerty") to the randomList object.
+Calls the RandomString() method to get a random string from the list and stores it in the randomString variable.
+Prints the randomly selected string to the console.
+Your code seems to be functioning correctly for selecting and removing a random string from the list. */
