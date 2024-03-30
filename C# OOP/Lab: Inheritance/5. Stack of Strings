@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+
+namespace CustomStack
+{
+    public class StartUp
+    {
+        static void Main(string[] args)
+        {
+            StackOfStrings stackOfStrings = new StackOfStrings();
+            List<string> strings = new List<string>();
+            strings.Add("abc");
+            strings.Add("xyz");
+            strings.Add("qwerty");
+
+            Stack<string> result = stackOfStrings.AddRange(strings);
+            Console.WriteLine(String.Join(", ", result));
+        }
+    }
+
+
+    public class StackOfStrings : Stack<string>
+    {
+
+        //---------------- Constructors ------------------
+        public StackOfStrings()
+        {
+
+        }
+
+        //------------------ Methods ---------------------
+
+        public bool IsEmpty()
+        {
+            return this.Count == 0;
+        }
+    
+        public Stack <string> AddRange (IEnumerable<string> collection)
+        {
+            foreach (string element in collection)
+            {
+                this.Push(element);
+            }
+
+            return this;
+        }
+    }
+}
+
+/* Your code seems to be a simple implementation of a custom stack class (StackOfStrings) inheriting from Stack<string>.
+ It includes a method AddRange to add a collection of strings to the stack.
+Here's a brief review of your code:
+Constructor: The StackOfStrings constructor is empty. If you don't need to perform any initialization, leaving it empty is fine.
+IsEmpty() Method: This method checks if the stack is empty.
+It's a good practice to provide such utility methods, but it's also worth noting that you can directly use this.Count == 0 where you need to check for an empty stack.
+AddRange() Method: This method adds a collection of strings to the stack.
+It iterates through the provided collection and pushes each element onto the stack.
+It then returns the modified stack. This method is well-implemented and serves its purpose effectively.
+Main Method: In the Main method, you create an instance of StackOfStrings, populate a list of strings, and then add those strings to the stack using the AddRange method. Finally, you print the contents of the stack.
+Your code looks good and fulfills its intended functionality. However, here are a few suggestions for improvement:
+Error Handling: Consider adding error handling for null collections or elements within the AddRange method.
+Use of Generics: Since you've already made StackOfStrings a generic class, you could make the AddRange method generic as well to accept collections of any type, not just strings.
+Documentation:
+It's always a good practice to include comments or documentation to explain the purpose and functionality of your classes and methods.
+Overall, your code demonstrates a good understanding of inheritance and basic data structure implementation. Keep up the good work!*/
