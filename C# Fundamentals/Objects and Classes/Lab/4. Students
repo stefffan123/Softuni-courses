@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ConsoleApp3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Student> person = new List<Student>();
+            string input = Console.ReadLine();
+
+            while (input != "end")
+            {
+                string[] myarray = input
+                    .Split(' ')
+                    .ToArray();
+
+                Student student = new Student()
+                {
+                    FirstName = myarray[0],
+                    LastName = myarray[1],
+                    Age = int.Parse(myarray[2]),
+                    City = myarray[3]
+                };
+
+                person.Add(student);
+                input = Console.ReadLine();
+            }
+
+            string city = Console.ReadLine();
+
+            foreach (Student person1 in person)
+            {
+                if (city == person1.City)
+                {
+                    Console.WriteLine($"{person1.FirstName} {person1.LastName} is {person1.Age} years old.");
+                }
+            }
+        }
+    }
+
+    class Student
+    {
+        // Properties:
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+        public string City { get; set; }
+    }
+}
+/* Your code appears to be a C# program that reads input from the console to create a list of Student objects with properties such as FirstName, LastName, Age, and City. Then, it prompts the user to input a city name and prints out the details of students who belong to that city.
+Here's how your program works:
+It creates a list called person to store Student objects.
+It reads input from the console until the user types "end".
+For each line of input, it splits the line into an array of strings using spaces as separators.
+It creates a new Student object and initializes its properties using the parsed values from the input array.
+It adds the newly created Student object to the person list.
+After the user types "end", it reads another input, assuming it's a city name.
+It iterates over the person list and prints out the details of students who belong to the entered city.
+Your code looks well-structured and does what you described. If you have any specific questions or need further assistance, feel free to ask!
+*/
