@@ -1,0 +1,77 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _3.Songs
+{
+    class Song
+    {
+        public string TypeList { get; set; }
+        public string Name { get; set; }
+        public string Time { get; set; }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {     
+            List<Song> songs = new List<Song>();
+
+            int numSongs = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < numSongs; i++)
+            {   
+                string[] data = Console.ReadLine()
+                    .Split('_')
+                    .ToArray();   
+                
+                string type = data[0];
+                string name = data[1];
+                string time = data[2];
+
+                Song song = new Song();
+
+                song.TypeList = type;
+                song.Name = name;
+                song.Time = time;
+
+                songs.Add(song);
+            }
+
+            string typeList = Console.ReadLine();
+
+            if (typeList == "all")
+            {
+                foreach (Song song in songs)
+                {
+                    Console.WriteLine(song.Name);
+                }
+            }
+            else
+            {
+                foreach (Song song in songs)
+                {
+                    if (song.TypeList == typeList)
+                    {
+                        Console.WriteLine(song.Name);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Your C# code looks good! It seems to be a program that manages a list of songs, where each song has a type, name, and time. It then allows users to filter and display songs based on their type.
+
+Here's a quick rundown of what the code does:
+
+    It defines a Song class with properties for the type of the song, the name of the song, and the time of the song.
+    In the Main method, it initializes an empty list of Song objects.
+    It reads an integer from the console, representing the number of songs to be added.
+    It loops numSongs times, reading input from the console for each song, splitting it into its components (type, name, and time), creating a Song object, and adding it to the list of songs.
+    It reads a string from the console, representing the type of songs to display.
+    If the input is "all", it prints the name of all songs. Otherwise, it prints the name of songs that match the given type.
+
+Overall, your code is well-structured and easy to understand. If you have any specific questions or need further assistance, feel free to ask!
+*/
