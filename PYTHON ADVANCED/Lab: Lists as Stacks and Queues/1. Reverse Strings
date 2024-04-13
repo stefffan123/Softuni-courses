@@ -1,0 +1,26 @@
+stack = []
+# This line initializes an empty list named stack. This list will serve as our stack data structure.
+
+input_str = input()
+# This line prompts the user to input a string and assigns it to the variable input_str.
+
+# Push each character onto the stack
+for char in input_str: # This line starts a for loop that iterates over each character (char) in the input_str.
+    # Inside the loop, each character is appended to the stack list.
+    stack.append(char)
+
+# Pop each character from the stack to form the reversed string
+reversed_str = ""   # This line initializes an empty string named reversed_str.
+# This string will store the reversed version of the input string.
+
+
+while stack: # This line starts a while loop that continues as long as the stack is not empty.
+    # This loop will pop characters from the stack until it's empty.
+    
+    reversed_str += stack.pop() # Inside the while loop,
+    # this line pops a character from the top of the stack using the pop() method
+    # and appends it to the reversed_str string.
+
+print(reversed_str)
+# Finally, this line prints the reversed string
+# to the console along with the message "Reversed string:".
