@@ -1,0 +1,31 @@
+from collections import deque
+starting_quantity = int(input())
+people = []
+while True:
+    person = input()
+    if person == "Start":
+        break
+    people.append(person)
+
+dispenser_queue = deque(people)
+
+while dispenser_queue:
+    command = input()
+    if command == "End":
+        break
+
+    command_parts = command.split()
+
+    if command_parts[0] == "refill":
+        starting_quantity += int(command_parts[1])
+
+    else:
+        requested_liters = int(command_parts[0])
+        person = dispenser_queue.popleft()
+        if requested_liters <= starting_quantity:
+            print(f"{person} got water")
+            starting_quantity -= requested_liters
+        else:
+            print(f"{person} must wait")
+
+print(f"{starting_quantity} liters left")
