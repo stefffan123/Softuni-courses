@@ -1,0 +1,16 @@
+from collections import deque
+clothes_input = [int(x) for x in (input().split())]
+clothes_stack = deque (clothes_input)
+capacity_per_rack = int(input())
+
+racks_used = 1
+current_rack_load = 0
+
+while clothes_stack:
+    if clothes_stack[len(clothes_stack)-1] + current_rack_load <= capacity_per_rack:
+        current_rack_load += clothes_stack.pop()
+    else:
+        racks_used += 1
+        current_rack_load = 0
+
+print(racks_used)
