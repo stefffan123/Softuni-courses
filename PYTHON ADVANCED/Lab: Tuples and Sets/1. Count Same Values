@@ -1,10 +1,14 @@
-# input Handling: The input is converted into a tuple of floating-point numbers.
-numbers = tuple(map(float, input().split()))
+# Input: numbers separated by a space
+numbers = input().split()
 
-used_numbers = set()
+# Convert input to floats
+numbers = [float(num) for num in numbers]
 
-for num in numbers:
-    if num not in used_numbers:
-        print(f"{num:.1f} - {numbers.count(num)} times")
-        used_numbers.add(num)
+# Use a set to store unique numbers
+unique_numbers = set(numbers)
+
+# Print occurrences using the set and the count method
+for num in unique_numbers:
+    count = numbers.count(num)  # Count occurrences of each unique number
+    print(f"{num:.1f} - {count} times")
         
