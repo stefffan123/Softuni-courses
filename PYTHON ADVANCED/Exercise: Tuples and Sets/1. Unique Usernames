@@ -1,0 +1,8 @@
+N = int(input())
+set1 = set()
+
+for x in range(N):
+    username = input()
+    set1.add(username)
+for y in set1:
+    print(y)
