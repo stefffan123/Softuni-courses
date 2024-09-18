@@ -1,0 +1,14 @@
+n, m = input().split()
+n = int(n)
+m = int(m)
+setn = set()
+setm = set()
+
+for _ in range(n):
+    setn.add(input())
+for _ in range(m):
+    setm.add(input())
+
+set_new = setn.intersection(setm)
+for x in set_new:
+    print(x)
