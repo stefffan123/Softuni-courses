@@ -1,0 +1,32 @@
+# Number of students
+n = int(input())
+
+# Set to store unique student names
+student_names = set()
+
+# Dictionary to store student names and their grades
+student_records = {}
+
+# Reading input for each student
+for _ in range(n):
+    name, grade = input().split()
+    grade = float(grade)
+
+    # Add student name to the set
+    student_names.add(name)
+
+    # If student is not in the dictionary, add them
+    if name not in student_records:
+        student_records[name] = []
+
+    # Append the grade to the student's list of grades
+    student_records[name].append(grade)
+
+# Print results for each student
+for student in student_names:
+    grades = student_records[student]
+    # Calculate the average grade
+    avg_grade = sum(grades) / len(grades)
+    # Format the output
+    grades_str = " ".join(f"{grade:.2f}" for grade in grades)
+    print(f"{student} -> {grades_str} (avg: {avg_grade:.2f})")
