@@ -1,0 +1,17 @@
+N = int(input())
+inset = set()
+
+for _ in range(N):
+    command = input().split(", ")
+    direction = command[0]
+    car_number = command[1]
+
+    if direction == "IN":
+        inset.add(car_number)
+    else:
+        inset.remove(car_number)
+if inset:
+    for x in inset:
+        print(x)
+else:
+    print("Parking Lot is Empty")
