@@ -1,0 +1,9 @@
+n = int(input())
+myset  = set()
+
+for _ in range(n):
+    symbol = input().split()
+    for x in symbol:
+        myset.add(x)
+for y in myset:
+    print(y)
