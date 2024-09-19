@@ -1,0 +1,19 @@
+# Read input from the user
+text = input("Enter your text: ")
+
+# Create a set to store unique characters
+unique_chars = set(text)
+
+# Create a dictionary to store the count of each character
+char_count = {}
+
+# Count the occurrences of each unique character in the text
+for char in unique_chars:
+    char_count[char] = text.count(char)
+
+# Sort the dictionary by keys (characters) in lexicographical order
+sorted_char_count = dict(sorted(char_count.items()))
+
+# Print the results
+for char, count in sorted_char_count.items():
+    print(f"{char}: {count} time/s")
