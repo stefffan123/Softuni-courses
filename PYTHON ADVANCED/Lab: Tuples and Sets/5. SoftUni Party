@@ -1,0 +1,23 @@
+N = int(input())
+vip = set()
+normal = set()
+
+for _ in range(N):
+    code = input()
+    if code[0].isdigit():
+        vip.add(code)
+    else:
+        normal.add(code)
+
+guest = input()
+while guest != "END":
+    if guest[0].isdigit():
+        vip.remove(guest)
+    else:
+        normal.remove(guest)
+    guest = input()
+
+for x in vip:
+    print(x)
+for x in normal:
+    print(x)
