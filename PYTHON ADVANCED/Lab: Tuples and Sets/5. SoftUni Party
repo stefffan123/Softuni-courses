@@ -1,23 +1,28 @@
 N = int(input())
+regular = set()
 vip = set()
-normal = set()
 
 for _ in range(N):
-    code = input()
-    if code[0].isdigit():
-        vip.add(code)
+    guest_number = input()
+    if guest_number[0].isdigit():
+        vip.add(guest_number)
     else:
-        normal.add(code)
+        regular.add(guest_number)
 
 guest = input()
 while guest != "END":
-    if guest[0].isdigit():
-        vip.remove(guest)
+    if guest in regular:
+        regular.remove(guest)
     else:
-        normal.remove(guest)
+        vip.remove(guest)
     guest = input()
 
-for x in vip:
-    print(x)
-for x in normal:
-    print(x)
+print(len(vip) + len(regular))
+
+if vip:
+    vip_guests_did_not_come = sorted(list(vip))
+    [print(guest) for guest in vip_guests_did_not_come]
+
+if regular:
+    regular_guests_did_not_come = sorted(list(regular))
+    [print(guest) for guest in regular_guests_did_not_come]
