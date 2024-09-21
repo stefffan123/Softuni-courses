@@ -20,9 +20,7 @@ while guest != "END":
 print(len(vip) + len(regular))
 
 if vip:
-    vip_guests_did_not_come = sorted(list(vip))
-    [print(guest) for guest in vip_guests_did_not_come]
+    print('\n'.join(sorted(vip)))
 
 if regular:
-    regular_guests_did_not_come = sorted(list(regular))
-    [print(guest) for guest in regular_guests_did_not_come]
+    print('\n'.join(sorted(regular)))
