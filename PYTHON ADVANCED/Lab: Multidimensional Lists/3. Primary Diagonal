@@ -1,0 +1,12 @@
+N = int(input())
+
+matrix = []
+
+for i in range(N):
+    rows = list(map(int, input().split()))
+    matrix.append(rows)
+
+sum = 0
+for i in range(N):
+    sum += matrix[i][i]
+print(sum)
