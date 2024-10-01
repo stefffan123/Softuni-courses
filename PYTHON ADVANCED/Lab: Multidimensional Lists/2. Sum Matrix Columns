@@ -1,0 +1,13 @@
+rows, columns = map(int, input().split(", "))
+
+matrix = []
+
+for _ in range(rows):
+    rowList = list(map(int, input().split()))
+    matrix.append(rowList)
+
+for j in range(columns):
+    sum1 = 0
+    for k in range(rows):
+        sum1 += matrix[k][j]
+    print(sum1)
