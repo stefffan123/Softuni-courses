@@ -1,0 +1,21 @@
+N = int(input())
+matrix = []
+
+for i in range(N):
+    row = input()
+    rowlist = []
+    for k in row:
+        rowlist.append(k)
+    matrix.append(rowlist)
+
+symbol = input()
+
+for i in range(N):
+    for j in range(N):
+        if matrix[i][j] == symbol:
+            print(f"{i}, {j}")
+            exit()
+
+if matrix[i][j] != symbol:
+    print(f"{symbol} does not occur in the matrix")
+    
