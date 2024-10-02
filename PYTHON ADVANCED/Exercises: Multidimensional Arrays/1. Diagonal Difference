@@ -1,17 +1,16 @@
 N = int(input())
 
 matrix = []
-sum1 = 0
-sum2 = 0
 
 for _ in range(N):
     rows_List = list(map(int, input().split()))
     matrix.append(rows_List)
 
+sum1 = 0
+sum2 = 0
+
 for i in range(N):
     sum1 += matrix[i][i]
-
-for j in range(N):
-    sum2 += matrix[j][N-j-1]
+    sum2 += matrix[i][N-i-1]
 
 print(abs(sum1-sum2))
