@@ -1,4 +1,4 @@
-rows, columns = list(map(int, input().split(", ")))
+rows, columns = map(int, input().split(", "))
 
 matrix = []
 
