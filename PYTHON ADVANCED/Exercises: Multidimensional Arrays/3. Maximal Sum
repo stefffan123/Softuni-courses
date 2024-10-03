@@ -1,0 +1,23 @@
+N, M = map(int, input().split())
+matrix = []
+
+for i in range(N):
+    rows_List = list(map(int, input().split()))
+    matrix.append(rows_List)
+
+max_sum = 0
+
+for i in range(N-2):
+    for j in range(M-2):
+        sum1 = matrix[i][j] + matrix[i][j+1] + matrix[i][j+2] + matrix[i+1][j] + matrix[i+1][j+1] + matrix[i+1][j+2] + matrix[i+2][j] + matrix[i+2][j+1] + matrix[i+2][j+2]
+        if sum > max_sum:
+            max_sum = sum1
+            matrix_Row = i
+            matrix_Col = j
+
+print(f"Sum = {max_sum}")
+
+for k in range(3):
+    for aa in range(3):
+        print(matrix[matrix_Row + k][matrix_Col + aa], end=" ")
+    print()
