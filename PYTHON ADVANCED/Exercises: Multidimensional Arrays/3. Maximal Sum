@@ -6,28 +6,28 @@ for _ in range(N):
     matrix.append(row)
 
 max_sum = -float('inf')  # Initialize max sum to a very small number
-best_submatrix = []  # To store the best 3x3 submatrix
+best_sub_matrix = []  # To store the best 3x3 sub_matrix
 
 for i in range(N - 2):
     for j in range(M - 2):
-        current_submatrix = []
+        current_sub_matrix = []
         for k in range(3):  # Loop to extract 3 rows
             current_row = []
-            for l in range(3):
-                current_row.append(matrix[i + k][j + l])
-            current_submatrix.append(current_row)
+            for m in range(3):
+                current_row.append(matrix[i + k][j + m])
+            current_sub_matrix.append(current_row)
 
         current_sum = 0
-        for row in current_submatrix:
+        for row in current_sub_matrix:
             for element in row:
                 current_sum += element
 
         if current_sum > max_sum:
             max_sum = current_sum
-            best_submatrix = current_submatrix
+            best_sub_matrix = current_sub_matrix
 
 print(f"Sum = {max_sum}")
-for row in best_submatrix:
+for row in best_sub_matrix:
     for element in row:
         print(element, end=" ")
     print()
