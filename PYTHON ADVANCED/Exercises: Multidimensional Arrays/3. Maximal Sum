@@ -1,23 +1,33 @@
 N, M = map(int, input().split())
+
 matrix = []
+for _ in range(N):
+    row = list(map(int, input().split()))
+    matrix.append(row)
 
-for i in range(N):
-    rows_List = list(map(int, input().split()))
-    matrix.append(rows_List)
+max_sum = -float('inf')  # Initialize max sum to a very small number
+best_submatrix = []  # To store the best 3x3 submatrix
 
-max_sum = 0
+for i in range(N - 2):
+    for j in range(M - 2):
+        current_submatrix = []
+        for k in range(3):  # Loop to extract 3 rows
+            current_row = []
+            for l in range(3):
+                current_row.append(matrix[i + k][j + l])
+            current_submatrix.append(current_row)
 
-for i in range(N-2):
-    for j in range(M-2):
-        sum1 = matrix[i][j] + matrix[i][j+1] + matrix[i][j+2] + matrix[i+1][j] + matrix[i+1][j+1] + matrix[i+1][j+2] + matrix[i+2][j] + matrix[i+2][j+1] + matrix[i+2][j+2]
-        if sum > max_sum:
-            max_sum = sum1
-            matrix_Row = i
-            matrix_Col = j
+        current_sum = 0
+        for row in current_submatrix:
+            for element in row:
+                current_sum += element
+
+        if current_sum > max_sum:
+            max_sum = current_sum
+            best_submatrix = current_submatrix
 
 print(f"Sum = {max_sum}")
-
-for k in range(3):
-    for aa in range(3):
-        print(matrix[matrix_Row + k][matrix_Col + aa], end=" ")
+for row in best_submatrix:
+    for element in row:
+        print(element, end=" ")
     print()
