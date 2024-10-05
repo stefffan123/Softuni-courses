@@ -1,0 +1,9 @@
+# Read the number of rows
+rows = int(input())
+
+# Read the matrix and filter for even numbers using nested list comprehension
+matrix = [[int(x) for x in input().split(", ")] for _ in range(rows)]
+even_matrix = [[num for num in row if num % 2 == 0] for row in matrix]
+
+# Print the result
+print(even_matrix)
