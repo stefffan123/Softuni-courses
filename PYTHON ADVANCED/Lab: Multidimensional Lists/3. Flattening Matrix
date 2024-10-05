@@ -1,0 +1,11 @@
+rows = int(input())
+
+matrix = []
+
+for _ in range(rows):
+    row = input().split(", ")
+    matrix.append([int(num) for num in row])
+
+flattened_matrix = [num for row in matrix for num in row]
+
+print(flattened_matrix)
