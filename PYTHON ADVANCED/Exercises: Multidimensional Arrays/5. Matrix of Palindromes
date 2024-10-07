@@ -1,0 +1,19 @@
+r, c = map(int, input().split())
+
+matrix = [['   ' for _ in range(c)] for _ in range(r)]
+mylist = []
+
+for x in range(97, 123):
+    mylist.append(chr(x))
+
+for i in range(r):
+    for j in range(c):
+        triple = []
+        triple.append(mylist[i])
+        triple.append(mylist[i + j])
+        triple.append(mylist[i])
+        string_my = ''.join(triple)
+        matrix[i][j] = string_my
+
+for i in range(r):
+    print(" ".join(matrix[i]))
