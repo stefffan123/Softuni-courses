@@ -1,0 +1,17 @@
+# Input the size of the matrix (n x n)
+n = int(input())
+
+# Use nested list comprehension to input the matrix row by row
+matrix = [[int(x) for x in input().split(", ")] for i in range(n)]
+
+# Extract primary diagonal and secondary diagonal using list comprehensions
+primary_diagonal = [matrix[i][i] for i in range(n)]
+secondary_diagonal = [matrix[i][n-i-1] for i in range(n)]
+
+# Calculate the sums of the diagonals
+sum_primary = sum(primary_diagonal)
+sum_secondary = sum(secondary_diagonal)
+
+# Print the diagonals and their sums
+print(f"Primary diagonal: {', '.join(map(str, primary_diagonal))}. Sum: {sum_primary}")
+print(f"Secondary diagonal: {', '.join(map(str, secondary_diagonal))}. Sum: {sum_secondary}")
