@@ -1,0 +1,39 @@
+# Read input
+n = int(input())
+matrix = [list(map(int, input().split())) for _ in range(n)]
+bomb_coordinates = input().split()
+
+# Directions for adjacent cells (all 8 directions around a bomb)
+directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+
+# Detonate the bombs
+for bomb in bomb_coordinates:
+    row, col = map(int, bomb.split(','))
+    bomb_value = matrix[row][col]
+
+    if bomb_value > 0:  # Only detonate if the bomb is alive
+        # Damage all adjacent cells
+        for direction in directions:
+            new_row, new_col = row + direction[0], col + direction[1]
+            if 0 <= new_row < n and 0 <= new_col < n and matrix[new_row][new_col] > 0:
+                matrix[new_row][new_col] -= bomb_value
+
+        # Set the bomb cell itself to 0
+        matrix[row][col] = 0
+
+# Count alive cells and their sum
+alive_cells = 0
+sum_of_alive_cells = 0
+for row in matrix:
+    for cell in row:
+        if cell > 0:
+            alive_cells += 1
+            sum_of_alive_cells += cell
+
+# Output results
+print(f"Alive cells: {alive_cells}")
+print(f"Sum: {sum_of_alive_cells}")
+
+# Print the matrix
+for row in matrix:
+    print(" ".join(map(str, row)))
