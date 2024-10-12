@@ -1,0 +1,31 @@
+# Input parsing
+N, M = map(int, input().split())
+snake = input()
+
+# Initialize the matrix
+matrix = []
+
+# Index to track the current character of the snake string
+snake_index = 0
+
+for row in range(N):
+    current_row = []
+
+    # Depending on the row index, decide the direction of filling
+    if row % 2 == 0:
+        # Left to right
+        for col in range(M):
+            current_row.append(snake[snake_index % len(snake)])
+            snake_index += 1
+    else:
+        # Right to left
+        for col in range(M):
+            current_row.append(snake[snake_index % len(snake)])
+            snake_index += 1
+        current_row.reverse()  # Reverse the row after filling
+
+    matrix.append(current_row)
+
+# Print the matrix
+for row in matrix:
+    print("".join(row))
