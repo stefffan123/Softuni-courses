@@ -1,0 +1,63 @@
+# Read the field size
+field_size = int(input())
+
+# Read the commands
+commands = input().split()
+
+# Read the field
+field = []
+for _ in range(field_size):
+    field.append(input().split())
+
+# Find the miner's starting position
+miner_pos = (0, 0)
+total_coal = 0
+
+for i in range(field_size):
+    for j in range(field_size):
+        if field[i][j] == 's':
+            miner_pos = (i, j)
+        elif field[i][j] == 'c':
+            total_coal += 1
+
+# Movement directions as row and column deltas
+directions = {
+    "up": (-1, 0),
+    "down": (1, 0),
+    "left": (0, -1),
+    "right": (0, 1)
+}
+
+# Number of collected coal
+collected_coal = 0
+
+for command in commands:
+    # Calculate new position based on command
+    new_row = miner_pos[0] + directions[command][0]
+    new_col = miner_pos[1] + directions[command][1]
+
+    # Ensure new position is within bounds
+    if 0 <= new_row < field_size and 0 <= new_col < field_size:
+        miner_pos = (new_row, new_col)
+
+    # Check the new position
+    cell = field[miner_pos[0]][miner_pos[1]]
+
+    if cell == 'c':
+        # Collect coal and mark the cell as visited
+        collected_coal += 1
+        field[miner_pos[0]][miner_pos[1]] = '*'
+
+        # If all coal is collected
+        if collected_coal == total_coal:
+            print(f"You collected all coal! ({miner_pos[0]}, {miner_pos[1]})")
+            break
+
+    elif cell == 'e':
+        # End of the route
+        print(f"Game over! ({miner_pos[0]}, {miner_pos[1]})")
+        break
+else:
+    # If game hasn't ended and all commands are used
+    remaining_coal = total_coal - collected_coal
+    print(f"{remaining_coal} pieces of coal left. ({miner_pos[0]}, {miner_pos[1]})")
