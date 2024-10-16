@@ -1,0 +1,9 @@
+matrix = []
+my_list = input().split("|")
+
+for i in range(len(my_list)):
+    list1 = my_list[i].split()
+    matrix.append(list1)
+for j in range(len(my_list)-1, -1, -1):
+    for k in matrix[j]:
+        print(k, end=" ")
