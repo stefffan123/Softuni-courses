@@ -1,0 +1,23 @@
+N = int(input())
+matrix = []
+for i in range(N):
+    my_list = list(map(int, input().split()))
+    matrix.append(my_list)
+while True:
+    command = input().split()
+    if command[0] == "END":
+        for j in range(N):
+            for k in range(N):
+                print(matrix[j][k], end=" ")
+            print()
+        break
+    first = int(command[1])
+    second = int(command[2])
+    third = int(command[3])
+    if first < 0 or second < 0 or first >= N or second >= N:
+        print("Invalid coordinates")
+        continue
+    if command[0] == "Add":
+        matrix[first][second] += third
+    elif command[0] == "Subtract":
+        matrix[first][second] -= third
