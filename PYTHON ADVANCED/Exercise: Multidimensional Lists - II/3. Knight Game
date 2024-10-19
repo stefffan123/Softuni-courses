@@ -1,0 +1,22 @@
+N = int(input())
+matrix = []
+
+for i in range(N):
+    strings = input()
+    list1 = []
+    for a in range(len(strings)):
+        list1.append(strings[a])
+    matrix.append(list1)
+
+counter = 0
+attack_number = 0
+coordinates = [[-1, -2], [-2, -1], [-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2]]
+for j in range(N):
+    for k in range(len(matrix[j])):
+        for m in range(len(coordinates)):
+            if matrix[j][k] == "K":
+                point = matrix[j]
+                counter += 1
+            attack_number += 1
+        else:
+            continue
