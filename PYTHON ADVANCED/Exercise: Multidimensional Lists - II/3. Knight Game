@@ -1,4 +1,4 @@
- = int(input())
+N = int(input())
 matrix = []
 for i in range(N):
     strings = input()
@@ -6,23 +6,26 @@ for i in range(N):
 
 counter = 0
 attack_number = 0
-maxattack = 0
-maxpoint = []
-coor = [[-1, -2], [-2, -1], [-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2]]
+max_attack = 0
+max_point = []
+coordinates = [[-1, -2], [-2, -1], [-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2]]
 for j in range(N):
     for k in range(len(matrix[j])):
         if matrix[j][k] == "K":
-            for m in range(len(coor)):
-                row = j-coor[m][m]
-                col = k-coor[m][m+1]
+            for m in range(len(coordinates)):
+                row = j + coordinates[m][0]
+                col = k + coordinates[m][1]
                 if row < 0 or col < 0 or row >= N or col >= N or matrix[row][col] == "0":
                     continue
                 else:
                     attack_number += 1
-            if attack_number > maxattack:
-                maxattack = attack_number
-                maxpoint.append(j)
-                maxpoint.append(k)
+            if attack_number > max_attack:
+                max_attack = attack_number
+                max_point.append(j)
+                max_point.append(k)
                 counter += 1
+                matrix[max_point[0]][max_point[1]] = "0"
+
         else:
             continue
+print(counter)
