@@ -1,31 +1,52 @@
+# Reading input
 N = int(input())
 matrix = []
 for i in range(N):
-    strings = input()
-    matrix.append(list(strings))
+    string = input()
+    matrix.append(list(string))
 
-counter = 0
-attack_number = 0
-max_attack = 0
-max_point = []
-coordinates = [[-1, -2], [-2, -1], [-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2]]
-for j in range(N):
-    for k in range(len(matrix[j])):
-        if matrix[j][k] == "K":
-            for m in range(len(coordinates)):
-                row = j + coordinates[m][0]
-                col = k + coordinates[m][1]
-                if row < 0 or col < 0 or row >= N or col >= N or matrix[row][col] == "0":
-                    continue
-                else:
-                    attack_number += 1
-            if attack_number > max_attack:
-                max_attack = attack_number
-                max_point.append(j)
-                max_point.append(k)
-                counter += 1
-                matrix[max_point[0]][max_point[1]] = "0"
+# Defining knight's possible moves
+coordinates = [
+    (-2, -1), (-2, 1), (-1, -2), (-1, 2),
+    (1, -2), (1, 2), (2, -1), (2, 1)
+]
 
-        else:
-            continue
-print(counter)
+removed_knights = 0
+
+while True:
+    max_attacks = 0
+    knight_to_remove = None
+
+    # Loop through each cell in the board
+    for i in range(N):
+        for j in range(N):
+            if matrix[i][j] == 'K':
+                # Count how many other knights this knight can attack
+                attacks = 0
+                for move in coordinates:
+                    new_i, new_j = i + move[0], j + move[1]
+                    if 0 <= new_i < N and 0 <= new_j < N and matrix[new_i][new_j] == 'K':
+                        attacks += 1
+
+                # Find the knight with the maximum number of attacks
+                if attacks > max_attacks:
+                    max_attacks = attacks
+                    knight_to_remove = (i, j)
+                elif attacks == max_attacks:
+                    # Tie-breaking rule: remove the top-left one
+                    if knight_to_remove and (
+                            i < knight_to_remove[0] or (i == knight_to_remove[0] and j < knight_to_remove[1])):
+                        knight_to_remove = (i, j)
+
+    # If no knights are attacking each other, stop
+    if max_attacks == 0:
+        break
+
+    # Remove the knight with the most attacks
+    if knight_to_remove:
+        i, j = knight_to_remove
+        matrix[i][j] = '0'  # Remove the knight
+        removed_knights += 1
+
+# Print the number of removed knights
+print(removed_knights)
