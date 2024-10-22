@@ -1,0 +1,31 @@
+number = int(input())
+matrix = []
+for i in range(number):
+    string = input().split()
+    matrix.append(list(string))
+    if "B" in string:
+        row, col = i, int(string.index("B"))
+left_sum = 0
+right_sum = 0
+up_sum = 0
+down_sum = 0
+for left in range(col, 0, -1):
+    left_sum += matrix[row][left]
+for right in range(col + 1, number):
+    right_sum = matrix[row][right]
+for up in range(row, -1, -1):
+    up_sum = matrix[up][col]
+for down in range(row + 1, number):
+    down_sum = matrix[down][col]
+max_sum = left_sum
+direction = "left"
+if right_sum > max_sum:
+    max_sum = right_sum
+    direction = "right"
+if up_sum > max_sum:
+    max_sum = up
+    direction = "up"
+if down_sum > max_sum:
+    max_sum = down_sum
+    direction = "down"
+print(direction)
