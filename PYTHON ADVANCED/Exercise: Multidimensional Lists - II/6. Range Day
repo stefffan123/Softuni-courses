@@ -1,45 +1,57 @@
-matrix = []
-start_row, start_col = 0, 0
-count_targets = 0
-targets = 0
-for i in range(5):
-    string = input().split()
-    for j in string:
-        if j == "x":
-            count_targets += 1
-    matrix.append(string)
-    if "A" in string:
-        start_row, start_col = i, string.index("A")
-targets = count_targets
-number = int(input())
-for i in range(number):
-    command = input().split()
-    word = command[0]
-    direction = [1]
-    if word == "shoot":
-        if direction == "down":
-            for a in range(start_row, 5):
-                if matrix[a][start_col] == "x":
-                    matrix[a][start_col] = "."
-                    targets -= 1
-        elif direction == "up":
-            shoot_row = start_row - 1
-        elif direction == "right":
-            shoot_col = start_col + 1
-        elif direction == "left":
-            shoot_col = start_col - 1
-    elif word == "move":
-        steps = int(command[2])
-        if direction == "down":
-            start_row += steps
-        elif direction == "up":
-            shoot_row -= steps
-        elif direction == "right":
-            shoot_col += steps
-        elif direction == "left":
-            shoot_col -= steps
+matrix_size = 5
 
-if targets > 0:
-    print(f"Training not completed! {targets} targets left.")
-elif targets == 0:
-    print(f"Training completed! All {count_targets} targets hit.")
+matrix = [[char for char in input().split()] for row in range(matrix_size)]
+
+dead_targets_pos, number_of_commands = [], int(input())
+total_targets = [sum([matrix[row].count("x") for row in range(matrix_size)])]
+directions = {"up": [-1, 0], "down": [1, 0], "left": [0, -1], "right": [0, 1]}
+
+# Find the player's initial position
+for row in range(matrix_size):
+    if "A" in matrix[row]:
+        player_row = row
+        player_col = matrix[row].index("A")
+        matrix[player_row][player_col] = "."
+        break
+
+# Main loop for processing commands
+for num in range(number_of_commands):
+    command = input().split()
+    action, direction = command[0], command[1]
+
+    # Shooting command
+    if action == "shoot":
+        row, col = player_row, player_col
+        while True:
+            row += directions[direction][0]
+            col += directions[direction][1]
+            if 0 <= row < matrix_size and 0 <= col < matrix_size:
+                if matrix[row][col] == "x":
+                    total_targets[0] -= 1
+                    dead_targets_pos.append([row, col])
+                    matrix[row][col] = "."
+                    break
+            else:
+                break
+
+    # Moving command
+    elif action == "move":
+        steps = int(command[2])
+        move_row = player_row + directions[direction][0] * steps
+        move_col = player_col + directions[direction][1] * steps
+        if (0 <= move_row < matrix_size and 0 <= move_col < matrix_size
+                and matrix[move_row][move_col] == "."):
+            matrix[player_row][player_col] = "."
+            matrix[move_row][move_col] = "A"
+            player_row, player_col = move_row, move_col
+
+    # Check if all targets are hit
+    if total_targets[0] == 0:
+        print(f"Training completed! All {len(dead_targets_pos)} targets hit.")
+        for pos in dead_targets_pos:
+            print(pos)
+        break
+else:
+    print(f"Training not completed! {total_targets[0]} targets left.")
+    for pos in dead_targets_pos:
+        print(pos)
