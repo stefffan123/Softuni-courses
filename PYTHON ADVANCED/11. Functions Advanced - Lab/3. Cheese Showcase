@@ -1,0 +1,21 @@
+def sorting_cheeses(**cheeses):
+    # Sort cheeses by the total number of pieces in descending order, then by cheese name in ascending order
+    sorted_cheeses = sorted(cheeses.items(), key=lambda x: (-len(x[1]), x[0]))
+
+    result = []
+    for cheese, quantities in sorted_cheeses:
+        # Sort each cheese's quantities in descending order
+        sorted_quantities = sorted(quantities, reverse=True)
+        result.append(cheese)
+        result.extend(sorted_quantities)
+
+    return '\n'.join(str(x) for x in result)
+
+
+print(
+    sorting_cheeses(
+        Parmesan=[102, 120, 135],
+        Camembert=[100, 100, 105, 500, 430],
+        Mozzarella=[50, 125],
+    )
+)
