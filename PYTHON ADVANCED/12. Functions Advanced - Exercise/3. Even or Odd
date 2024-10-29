@@ -1,13 +1,14 @@
 def even_odd(*num):
+    *numbers, command = num
     final = []
-    if num[-1] == "even":
-        for i in range(len(num) - 1):
-            if num[i] % 2 == 0:
-                final.append(num[i])
-    elif num[-1] == "odd":
-        for i in range(len(num) - 1):
-            if num[i] % 2 != 0:
-                final.append(num[i])
+    if command == "even":
+        for i in numbers:
+            if i % 2 == 0:
+                final.append(i)
+    elif command == "odd":
+        for i in numbers:
+            if i % 2 != 0:
+                final.append(i)
     return final
 
 
