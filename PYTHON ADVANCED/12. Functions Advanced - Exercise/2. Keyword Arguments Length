@@ -1,0 +1,7 @@
+def kwargs_length(**a):
+    return len(a)
+
+
+dictionary = {}
+
+print(kwargs_length(**dictionary))
