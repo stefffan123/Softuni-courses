@@ -1,0 +1,20 @@
+def seq(*args):
+    negative, positive = [], []
+    for i in args:
+        if i < 0:
+            negative.append(i)
+        elif i > 0:
+            positive.append(i)
+    return negative, positive  # Return the lists, not their sums
+
+def abso(negative, positive):
+    if abs(sum(negative)) > sum(positive):  # Calculate the sums inside this function
+        return "The negatives are stronger than the positives"
+    else:
+        return "The positives are stronger than the negatives"
+
+my_list = [int(num) for num in input().split()]
+negative, positive = seq(*my_list)  # Retrieve the lists, not sums
+print(sum(negative))
+print(sum(positive))  # Print the sums
+print(abso(negative, positive))  # Pass the lists to abso
