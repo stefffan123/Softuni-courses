@@ -1,0 +1,21 @@
+def even_odd_filter(**my_dict):
+    for i in my_dict:
+        my_list = []
+        if i == "odd":
+            for j in my_dict[i]:
+                if j % 2 != 0:
+                    my_list.append(j)
+            my_dict["odd"] = my_list
+        else:
+            for j in my_dict[i]:
+                if j % 2 == 0:
+                    my_list.append(j)
+            my_dict["even"] = my_list
+    sorted_dict = dict(sorted(my_dict.items(), key=lambda item: len(item[1]), reverse=True))
+    return sorted_dict
+
+
+print(even_odd_filter(
+    odd=[1, 2, 3, 4, 10, 5],
+    even=[3, 4, 5, 7, 10, 2, 5, 5, 2],
+))
