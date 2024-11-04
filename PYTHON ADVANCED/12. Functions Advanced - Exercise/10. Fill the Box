@@ -1,0 +1,27 @@
+def fill_the_box(height, length, width, *args):
+    # Calculate the volume of the box
+    box_volume = height * length * width
+    # Track the remaining space in the box and any extra cubes
+    remaining_space = box_volume
+    extra_cubes = 0
+
+    # Iterate through the arguments until "Finish"
+    for arg in args:
+        if arg == "Finish":
+            break
+        # Fill the box with cubes
+        if remaining_space >= arg:
+            remaining_space -= arg
+        else:
+            # Calculate remaining space, add overflow to extra_cubes
+            extra_cubes += arg - remaining_space
+            remaining_space = 0
+
+    # Determine the output based on remaining space
+    if remaining_space > 0:
+        return f"There is free space in the box. You could put {remaining_space} more cubes."
+    else:
+        return f"No more free space! You have {extra_cubes} more cubes."
+
+
+print(fill_the_box(2, 8, 2, 2, 1, 7, 3, 1, 5, "Finish"))
