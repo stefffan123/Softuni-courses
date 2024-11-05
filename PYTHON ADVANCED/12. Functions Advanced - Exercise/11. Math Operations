@@ -1,0 +1,25 @@
+def math_operations(*args, **kwargs):
+    # Defining a list to cycle through the operations in the order "a", "s", "d", "m"
+    operations = ["a", "s", "d", "m"]
+    # Iterate over each float argument in the args list
+    for i, num in enumerate(args):
+        operation = operations[i % 4]  # Determine the operation based on position in sequence
+        if operation == "a":
+            kwargs[operation] += num  # Addition
+        elif operation == "s":
+            kwargs[operation] -= num  # Subtraction
+        elif operation == "d":
+            # Skip division if num is 0
+            if num != 0:
+                kwargs[operation] /= num  # Division
+        elif operation == "m":
+            kwargs[operation] *= num  # Multiplication
+
+    # Sorting by value in descending order, if values are equal, then by key in ascending order
+    sorted_results = sorted(kwargs.items(), key=lambda x: (-x[1], x[0]))
+    # Formatting the output as requested
+    result = "\n".join(f"{k}: {v:.1f}" for k, v in sorted_results)
+    return result
+
+
+print(math_operations(2.1, 12.56, 0.0, -3.899, 6.0, -20.65, a=1, s=7, d=33, m=15))
