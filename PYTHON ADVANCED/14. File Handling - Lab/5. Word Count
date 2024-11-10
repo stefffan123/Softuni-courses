@@ -1,0 +1,20 @@
+with open('words.txt', 'r') as wf:
+    words = wf.read().split()
+with open('text.txt', 'r') as tf:
+    text = tf.read().lower()
+
+text = text.replace(",", "").replace(".", "").replace("!", "").replace("?", "")
+text_words = text.split()
+
+word_counter = {}
+
+for word in words:
+    word_lower = word.lower()
+    count = text_words.count(word_lower)
+    word_counter[word] = count
+
+sorted_word_counts = sorted(word_counter.items(), key=lambda x: x[1], reverse=True)
+
+with open('output.txt', 'w') as of:
+    for word, count in sorted_word_counts:
+        of.write(f"{word} - {count}\n")
