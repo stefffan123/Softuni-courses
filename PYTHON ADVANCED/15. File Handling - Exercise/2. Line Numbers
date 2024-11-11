@@ -1,0 +1,6 @@
+file = open("text.txt")
+lines = file.readlines()
+
+for i in range(len(lines)):
+
+    print(f"Line {i+1}: {lines[i]}")
