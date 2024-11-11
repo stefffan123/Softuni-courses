@@ -1,6 +1,11 @@
 file = open("text.txt")
 lines = file.readlines()
-
+letter_counter = 0
+punctuation_counter = 0
 for i in range(len(lines)):
+    for a in lines[i]:
+        if a.isalpha():
+            letter_counter += 1
 
-    print(f"Line {i+1}: {lines[i]}")
+    print(f"Line {i+1}: {lines[i]} {letter_counter}")
+    letter_counter = 0
