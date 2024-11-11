@@ -1,1 +1,17 @@
+replace_chars = {"-", ",", ".", "!", "?"}
 
+with open('text.txt', 'r') as file:
+    lines = file.readlines()
+    print(lines)
+
+for i in range(len(lines)):
+    if i % 2 == 0:
+        line = lines[i].strip()
+
+        for char in replace_chars:
+            line = line.replace(char, "@")
+
+        words = line.split()
+        reversed_line = " ".join(words[::-1])
+
+        print(reversed_line)
