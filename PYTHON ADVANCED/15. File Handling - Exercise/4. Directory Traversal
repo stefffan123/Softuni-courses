@@ -1,0 +1,32 @@
+import os
+
+# Get the directory path from the user
+directory_path = input("Enter the directory path: ").strip()
+
+# Dictionary to store files grouped by their extensions
+files_by_extension = {}
+
+# Traverse the directory only at the first level
+for entry in os.scandir(directory_path):
+    if entry.is_file():
+        # Get the file extension
+        _, extension = os.path.splitext(entry.name)
+        extension = extension.lower()  # Ensure case-insensitive sorting
+
+        # Group files by their extensions
+        if extension not in files_by_extension:
+            files_by_extension[extension] = []
+        files_by_extension[extension].append(entry.name)
+
+# Sort extensions alphabetically
+sorted_extensions = sorted(files_by_extension.keys())
+
+# Write the report
+report_path = os.path.join(directory_path, 'report.txt')
+with open(report_path, 'w') as report:
+    for ext in sorted_extensions:
+        report.write(f"{ext}\n")
+        for file_name in sorted(files_by_extension[ext]):  # Sort files by name
+            report.write(f"- - - {file_name}\n")
+
+print(f"Report saved at: {report_path}")
